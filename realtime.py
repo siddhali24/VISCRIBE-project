@@ -7,10 +7,12 @@ import base64
 
 realtime_bp = Blueprint('realtime_bp', __name__)
 
-# Load a model instance for real-time detection
-print('[realtime.py] Loading YOLOv8 model for realtime...')
-model = YOLO('yolov8n.pt')
-print('[realtime.py] Model loaded')
+
+model = None
+
+def set_model(m):
+    global model
+    model = m
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'uploads')
 
@@ -20,7 +22,7 @@ def _run_model(img, conf=0.25):
     try:
         results = model(img, conf=conf)
     except TypeError:
-        # older/newer ultralytics API differences
+        
         results = model(img)
     return results
 
@@ -31,7 +33,7 @@ def _parse_results(results, img_shape):
         try:
             x1, y1, x2, y2 = map(float, box.xyxy[0])
         except Exception:
-            # fallback if xyxy is already a flat list
+         
             vals = box.xyxy
             x1, y1, x2, y2 = float(vals[0]), float(vals[1]), float(vals[2]), float(vals[3])
         try:

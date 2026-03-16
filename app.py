@@ -14,11 +14,17 @@ CORS(app)
 
 
 try:
-    from realtime import realtime_bp
+    from realtime import realtime_bp, set_model
+    print("Loading YOLOv8 model...")
+    model = YOLO('yolov8n.pt')
+    set_model(model)
     app.register_blueprint(realtime_bp)
-    print('[app.py] realtime blueprint registered')
+    print('[app.py] realtime blueprint registered with shared model')
 except Exception as e:
     print('[app.py] Could not register realtime blueprint:', e)
+    # Fallback if realtime missing or fails
+    print("Loading YOLOv8 model (fallback)...")
+    model = YOLO('yolov8n.pt')
 
 UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -26,9 +32,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 VIDEO_CAPTIONS = {}
 
-print("Loading YOLOv8 model...")
-model = YOLO('yolov8n.pt')
-print("Model loaded successfully!")
+# model is already loaded above
+print("Model ready!")
 
 # @app.route('/')
 # def home():
