@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import os
 import base64
+import gc
 
 realtime_bp = Blueprint('realtime_bp', __name__)
 
@@ -107,6 +108,8 @@ def realtime_detect():
         return jsonify({'boxes': boxes, 'caption': caption, 'labels': unique_labels, 'count': len(boxes)})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    finally:
+        gc.collect()
 
 
 @realtime_bp.route('/api/realtime-status')
@@ -163,3 +166,5 @@ def realtime_frame():
         return jsonify({'annotated': data_url, 'caption': caption, 'boxes': boxes, 'labels': unique_labels, 'count': len(boxes)})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    finally:
+        gc.collect()
