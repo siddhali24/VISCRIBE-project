@@ -1,4 +1,4 @@
-# 👁️ VISCRIBE: AI Object Detection & Caption Generation System.
+# VISCRIBE: AI Object Detection & Caption Generation System.
 **VISCRIBE** (Visual-Describe) is a state-of-the-art computer vision platform that leverages **YOLOv8** to detect objects in images, videos, and real-time streams, instantly generating descriptive AI captions.
 
 ---
@@ -20,7 +20,7 @@
 
 ### 🎥 Real-time Detection
 <p align="center">
-  <img src="static/screenshots/realtime_detection.png" alt="Real-time Detection" width="80%">
+  <img src="static/screenshots/realtime_detection.png" alt="Real-time Detection" width="50%">
 </p>
 
 ---
@@ -30,7 +30,7 @@
 - **Backend**: Python, Flask, Gunicorn
 - **AI/ML**: Ultralytics (YOLOv8), OpenCV
 - **Frontend**: HTML5 , CSS3 , JavaScript 
-- **Deployment**: Render
+- **Deployment**: Hugging Face Spaces
 
 ---
 
@@ -57,5 +57,5 @@
 
 ## 👥 Contributors
 
--**Siddhali Kathar**; **Sonal Raikar** and **Chaitali Bhamre**. 
+-**Siddhali Kathar** ,  **Sonal Raikar** and **Chaitali Bhamre**. 
  
